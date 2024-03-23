@@ -62,6 +62,18 @@ public class ShippingCalculatorTest {
 
     @Test
     @Tag("Negative")
+    @DisplayName("Неалеко, пусто, хрупкое, пусто")
+    void nullExceptionTest() throws Exception {
+        int distance = 11; // Example distance in km
+        String dimensions = null; // Example cargo dimensions
+        boolean fragile = true; // Example fragility of cargo (true or false)
+        String workload = null; // Example delivery service workload (very high, high, hard)
+        assertThrows(NullPointerException.class, () -> calculateShippingCost(distance, dimensions, fragile, workload),
+                "Должно быть выброшено исключение");
+    }
+
+    @Test
+    @Tag("Negative")
     @DisplayName("Далеко, большое, незагружено и хрупкое")
     void fragileFarTest() throws Exception {
         int distance = 30; // Example distance in km
@@ -72,16 +84,5 @@ public class ShippingCalculatorTest {
                 "Должно быть выброшено исключение");
     }
 
-    @Test
-    @Tag("Negative")
-    @DisplayName("Неалеко, пусто, хрупкое, пусто")
-    void nullExeptionTest() throws Exception {
-        int distance = 11; // Example distance in km
-        String dimensions = null; // Example cargo dimensions
-        boolean fragile = true; // Example fragility of cargo (true or false)
-        String workload = null; // Example delivery service workload (very high, high, hard)
-        assertThrows(NullPointerException.class, () -> calculateShippingCost(distance, dimensions, fragile, workload),
-                "Должно быть выброшено исключение");
-    }
 
 }
